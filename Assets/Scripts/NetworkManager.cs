@@ -11,6 +11,7 @@ public class NetworkManager : MonoBehaviour
 
     [SerializeField] Text text;
     [SerializeField] InputField nickName;
+    [SerializeField] Text nicknameDisplay;
     // Start is called before the first frame update
 
     private void Awake()
@@ -20,6 +21,7 @@ public class NetworkManager : MonoBehaviour
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
+        
     }
 
     // Joins a room by name
@@ -65,6 +67,7 @@ public class NetworkManager : MonoBehaviour
     public void changeNickName()
     {
         PhotonNetwork.NickName = nickName.text;
+        nicknameDisplay.text = PhotonNetwork.NickName;
     }
 
 }
