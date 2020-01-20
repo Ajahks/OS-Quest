@@ -606,7 +606,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6312501, y: 0}
   m_AnchorMax: {x: 1, y: 0.25566828}
-  m_AnchoredPosition: {x: 0.19999695, y: -1.6000061}
+  m_AnchoredPosition: {x: 0.2000122, y: -1.6000061}
   m_SizeDelta: {x: -0.3999939, y: -3.100006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &548943395
@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 639525796}
   - component: {fileID: 639525795}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Nickname
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1839,6 +1839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 364273784}
   nickName: {fileID: 1218462623}
+  nicknameDisplay: {fileID: 639525795}
 --- !u!4 &1591230194
 Transform:
   m_ObjectHideFlags: 0
