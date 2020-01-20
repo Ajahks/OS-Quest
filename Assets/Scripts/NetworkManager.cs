@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,15 @@ using UnityEngine.UI;
 public class NetworkManager : MonoBehaviour
 {
 
+    // Other components of this game object - will be connected in the awake method
     NetworkCallbacks callbacks = null;
 
-    [SerializeField] Text text;
-    [SerializeField] InputField nickName;
-    [SerializeField] Text nicknameDisplay;
-    // Start is called before the first frame update
+    // UI Elements
+    [SerializeField] Text text = null;
+    [SerializeField] InputField nickName = null;
+    [SerializeField] Text nicknameDisplay = null;
+    [SerializeField] GameObject joinPanel = null;
+    [SerializeField] GameObject gamePanel = null;
 
     private void Awake()
     {
@@ -50,6 +54,14 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
+    // Leaves the current room
+    public void leaveServer()
+    {
+        if (callbacks.isInRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+    }
 
     //Refresh player list
     public void refreshPlayers()
@@ -68,6 +80,20 @@ public class NetworkManager : MonoBehaviour
     {
         PhotonNetwork.NickName = nickName.text;
         nicknameDisplay.text = PhotonNetwork.NickName;
+    }
+
+    // Switches to the game view
+    public void switchToGameView()
+    {
+        gamePanel.SetActive(true);
+        joinPanel.SetActive(false);
+    }
+
+    // Switches back to the join view
+    public void switchToJoinView()
+    {
+        joinPanel.SetActive(true);
+        gamePanel.SetActive(false);
     }
 
 }
