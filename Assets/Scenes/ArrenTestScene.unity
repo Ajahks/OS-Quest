@@ -751,7 +751,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Create
+  m_Text: Exit
 --- !u!222 &583982965
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1044,7 +1044,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 705157337}
   m_TextComponent: {fileID: 1991281187}
   m_Placeholder: {fileID: 158098897}
@@ -1335,7 +1335,7 @@ GameObject:
   - component: {fileID: 812524346}
   - component: {fileID: 812524345}
   m_Layer: 5
-  m_Name: Create
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1405,8 +1405,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1591230193}
-        m_MethodName: createServer
-        m_Mode: 5
+        m_MethodName: ExitGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
