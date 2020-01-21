@@ -12,6 +12,7 @@ public class NetworkCallbacks : MonoBehaviourPunCallbacks
 
     // Outside references
     [SerializeField] PlayerList playerList = null;
+    [SerializeField] ChatPanel chat = null;
 
     public override void OnConnectedToMaster()
     {
@@ -45,6 +46,7 @@ public class NetworkCallbacks : MonoBehaviourPunCallbacks
         isInRoom = true;
         GetComponent<NetworkManager>().switchToGameView(); // Switch to the game view
         playerList.refreshPlayers();
+        chat.connect();
     }
 
     public override void OnCreatedRoom()
