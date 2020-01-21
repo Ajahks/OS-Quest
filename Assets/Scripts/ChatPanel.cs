@@ -40,11 +40,16 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
     public void connect()
     {
         userChatClient.Connect("0f62b849-2975-4595-b1da-eed177458940", "1.0", null);
+
+        //Clear the chat
+        chatBox.text = "";
     }
 
     public void disconnect()
     {
         userChatClient.Disconnect();
+
+        input.interactable = false;
     }
 
     // Send the current message to the chat
@@ -57,11 +62,14 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
             {
                 message = PhotonNetwork.NickName + ": " + message;
 
-                //Send the message
+                // Send the message
                 userChatClient.PublishMessage("global", message);
 
-                //Clear the input
+                // Clear the input
                 input.text = "";
+
+                // Select the input again
+                input.ActivateInputField();
             }
             else
             {
@@ -79,6 +87,8 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
     {
         isConnected = false;
         userChatClient.SetOnlineStatus(ChatUserStatus.Offline);
+
+
     }
 
     public void OnConnected()
@@ -86,8 +96,8 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
         isConnected = true;
         userChatClient.Subscribe(new string[] { "global" });
         userChatClient.SetOnlineStatus(ChatUserStatus.Online);
-        //Clear the chat
-        chatBox.text = "";
+
+        input.interactable = true;  // You can now use the chat box
     }
 
     public void OnChatStateChange(ChatState state)
@@ -104,6 +114,8 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
             message = message + "\n";
             chatBox.text = chatBox.text + message;
         }
+
+
     }
 
     public void OnPrivateMessage(string sender, object message, string channelName)

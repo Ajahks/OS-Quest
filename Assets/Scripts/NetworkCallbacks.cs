@@ -10,6 +10,7 @@ public class NetworkCallbacks : MonoBehaviourPunCallbacks
     public bool isConnectedToMaster = false;
     public bool isInRoom = false;   //Whether or not we are in a room or not
 
+
     // Outside references
     [SerializeField] PlayerList playerList = null;
     [SerializeField] ChatPanel chat = null;
@@ -30,13 +31,20 @@ public class NetworkCallbacks : MonoBehaviourPunCallbacks
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         base.OnJoinRoomFailed(returnCode, message);
-        Debug.Log("Join room failed: " + message);
+
+        //If the room has not been made yet, then make one
+        if (returnCode == ErrorCode.GameDoesNotExist)
+        {
+            PhotonNetwork.CreateRoom("test");
+        }
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         base.OnCreateRoomFailed(returnCode, message);
         Debug.Log("Create room failed: " + message);
+
+
     }
 
     public override void OnJoinedRoom()

@@ -96,4 +96,8 @@ public class NetworkManager : MonoBehaviour
         gamePanel.SetActive(false);
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
