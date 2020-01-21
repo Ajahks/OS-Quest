@@ -42,6 +42,11 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
         userChatClient.Connect("0f62b849-2975-4595-b1da-eed177458940", "1.0", null);
     }
 
+    public void disconnect()
+    {
+        userChatClient.Disconnect();
+    }
+
     // Send the current message to the chat
     public void sendMessage()
     {

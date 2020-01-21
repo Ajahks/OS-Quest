@@ -62,6 +62,8 @@ public class NetworkCallbacks : MonoBehaviourPunCallbacks
         base.OnLeftRoom();
         Debug.Log("Successfuly exited room!");
         isInRoom = false;
+        chat.disconnect(); //Leave the chat
+
         GetComponent<NetworkManager>().switchToJoinView(); // Switch back to the join view
     }
 
