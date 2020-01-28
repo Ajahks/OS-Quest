@@ -47,6 +47,8 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
 
     public void disconnect()
     {
+        // sendInfoMessage("has left the chat."); broken (need to pause?)
+
         userChatClient.Disconnect();
 
         input.interactable = false;
@@ -78,6 +80,17 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
         }
     }
 
+    public void sendInfoMessage(string m)
+    {
+        if (isConnected)
+        {
+            string message = "*" + PhotonNetwork.NickName + " " + m;
+
+            // Send the message
+            userChatClient.PublishMessage("global", message);
+        }
+    }
+
     public void DebugReturn(DebugLevel level, string message)
     {
         Debug.Log(level + ": " + message);
@@ -87,8 +100,6 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
     {
         isConnected = false;
         userChatClient.SetOnlineStatus(ChatUserStatus.Offline);
-
-
     }
 
     public void OnConnected()
@@ -98,6 +109,8 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
         userChatClient.SetOnlineStatus(ChatUserStatus.Online);
 
         input.interactable = true;  // You can now use the chat box
+
+        sendInfoMessage("has entered the chat.");
     }
 
     public void OnChatStateChange(ChatState state)
