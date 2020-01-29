@@ -11,6 +11,7 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
 
     [SerializeField] Text chatBox = null;
     [SerializeField] InputField input = null;
+    [SerializeField] ScrollRect scroll = null;
 
     Queue<string> messages = null;
 
@@ -84,7 +85,7 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
     {
         if (isConnected)
         {
-            string message = "*" + PhotonNetwork.NickName + " " + m;
+            string message =  "*" + PhotonNetwork.NickName + " " + m;
 
             // Send the message
             userChatClient.PublishMessage("global", message);
@@ -126,6 +127,7 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
             string message = messages[i].ToString();
             message = message + "\n";
             chatBox.text = chatBox.text + message;
+            scroll.verticalNormalizedPosition= 0;
         }
 
 
