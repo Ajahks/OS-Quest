@@ -6,6 +6,13 @@ using UnityEngine;
 
 public class NetworkCallbackManager : MonoBehaviourPunCallbacks
 {
+    [SerializeField] byte maxPlayersPerRoom = 20;
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        PhotonNetwork.AddCallbackTarget(this);
+    }
+
     public override void OnConnectedToMaster()
     {
         Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
@@ -25,7 +32,7 @@ public class NetworkCallbackManager : MonoBehaviourPunCallbacks
 
         Debug.Log("Failed to join random room: (Error Code: " + returnCode + ") "+ message);
         // #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
-        PhotonNetwork.CreateRoom(null, new RoomOptions());
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersPerRoom});
     }
 
     public override void OnJoinedRoom()
