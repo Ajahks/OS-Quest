@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /**
  * Item.cs
@@ -12,5 +13,24 @@ using UnityEngine;
 public abstract class Item : ScriptableObject
 {
     public string itemName = "Item";
-    public Sprite image;
+    public Texture image;
+
+    public bool UpdateData(Transform target)
+    {
+        Text nameField = target.GetComponentInChildren<Text>();
+        RawImage imageField = target.GetComponentInChildren<RawImage>();
+
+        if (nameField && imageField)
+        {
+            nameField.text = itemName;
+            imageField.texture = image;
+        }
+        else
+        {
+            Debug.LogError("Name and Image not found: " + itemName);
+            return false;
+        }
+
+        return true;
+    }
 }

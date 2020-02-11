@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: c_tshirt
   m_EditorClassIdentifier: 
   itemName: T-shirt
-  image: {fileID: 0}
+  image: {fileID: 2800000, guid: 83caa3c6265275742b8648904e251ef2, type: 3}
   cosmeticType: 1

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: c_sunhat
   m_EditorClassIdentifier: 
   itemName: Sun Hat
-  image: {fileID: 0}
+  image: {fileID: 2800000, guid: 39a26683ad01c2e42bf7bf0d6cc66e4d, type: 3}
   cosmeticType: 0
