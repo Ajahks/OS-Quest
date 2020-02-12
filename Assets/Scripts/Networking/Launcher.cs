@@ -11,6 +11,10 @@ public class Launcher : MonoBehaviour
     // Private variables 
     string gameVersion = "1"; // The version of the game
 
+    // Object References
+    [SerializeField] GameObject connectButton = null;
+    [SerializeField] GameObject connectText = null;
+
 
     #region Unity Callbacks
 
@@ -22,7 +26,6 @@ public class Launcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Connect();
     }
 
     // Update is called once per frame
@@ -38,8 +41,14 @@ public class Launcher : MonoBehaviour
     /// - If already connected, attempt to join random room
     /// - If not connected, connect this application instance to Photon Cloud Network
     /// </summary>
-    private void Connect()
+    public void Connect()
     {
+        if (connectButton)
+        {
+            connectButton.SetActive(false);
+            connectText.SetActive(true);
+        }
+
         if (PhotonNetwork.IsConnected)
         {
             // If already connected then we join a random room
