@@ -9,6 +9,7 @@ public class NetworkLauncherCallbackManager : MonoBehaviourPunCallbacks
     [SerializeField] byte maxPlayersPerRoom = 20;
     Launcher launcher;
 
+
     //Grab any internal references
     public void Awake()
     {
@@ -23,9 +24,10 @@ public class NetworkLauncherCallbackManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
-
-        // Once the player connects to the master, join a random room
-        PhotonNetwork.JoinRandomRoom();
+        if (launcher.isConnecting)
+        {
+            PhotonNetwork.JoinRandomRoom();
+        }
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -45,6 +47,8 @@ public class NetworkLauncherCallbackManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Player has succesfully joined the room!");
-        launcher.connectText
+
+        // Now join the actuall game
+        PhotonNetwork.LoadLevel(1);
     }
 }

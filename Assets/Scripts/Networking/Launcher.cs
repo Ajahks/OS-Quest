@@ -7,7 +7,7 @@ using UnityEngine;
 //Will handle launching the user into game
 public class Launcher : MonoBehaviour
 {
-
+    public bool isConnecting = false;
     // Private variables 
     string gameVersion = "1"; // The version of the game
 
@@ -26,6 +26,7 @@ public class Launcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -45,6 +46,7 @@ public class Launcher : MonoBehaviour
     {
         if (connectButton)
         {
+
             connectButton.SetActive(false);
             connectText.SetActive(true);
         }
@@ -57,7 +59,7 @@ public class Launcher : MonoBehaviour
         else
         {
             // First connect to Photon Online Server
-            PhotonNetwork.ConnectUsingSettings();
+            isConnecting = PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.GameVersion = gameVersion;
         }
     }
