@@ -11,6 +11,7 @@ public class ArrensTestMovement : MonoBehaviourPun
     bool leftHeld = false;
     bool upHeld = false;
     bool downHeld = false;
+    float dashTime = 0;
 
     #endregion
 
@@ -34,38 +35,11 @@ public class ArrensTestMovement : MonoBehaviourPun
             return;
         }
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            rightHeld = true;
-        }
-        else
-        {
-            rightHeld = false;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            leftHeld = true;
-        }
-        else
-        {
-            leftHeld = false;
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            upHeld = true;
-        }
-        else
-        {
-            upHeld = false;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            downHeld = true;
-        }
-        else
-        {
-            downHeld = false;
-        }
+        rightHeld = Input.GetKey(KeyCode.D) ? true : false;
+        leftHeld = Input.GetKey(KeyCode.A) ? true : false;
+        upHeld = Input.GetKey(KeyCode.W) ? true : false;
+        downHeld = Input.GetKey(KeyCode.S) ? true : false;
+        if(Input.GetKeyDown(KeyCode.LeftShift)) dashTime = .5f;
     }
 
     private void FixedUpdate()
@@ -78,7 +52,12 @@ public class ArrensTestMovement : MonoBehaviourPun
         float zVal = upVal - downVal;
         float xVal = rightVal - leftVal;
 
-        rb.velocity = new Vector3(xVal, 0, zVal) * speed;
+        if(dashTime > 0)
+        {
+            rb.velocity = new Vector3(xVal, 0, zVal) * speed * 3.0f;
+            dashTime -= Time.deltaTime;
+        }
+        else rb.velocity = new Vector3(xVal, 0, zVal) * speed;
     }
     #endregion
 
