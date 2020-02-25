@@ -15,8 +15,9 @@ public class NetworkManager : MonoBehaviour
     [SerializeField] Text text = null;
     [SerializeField] InputField nickName = null;
     [SerializeField] Text nicknameDisplay = null;
-    [SerializeField] GameObject joinPanel = null;
-    [SerializeField] GameObject gamePanel = null;
+    public GameObject joinPanel = null;
+    public GameObject gamePanel = null;
+
 
     private void Awake()
     {
