@@ -1,6 +1,7 @@
 ﻿using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,11 +27,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     #region Unit Callbacks
     private void Start()
     {
+        Debug.Log(PhotonNetwork.NickName);
         if (PlayerManager.LocalPlayerInstance == null)
         {
             Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
             // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-            PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, -4f, 0f), Quaternion.identity, 0);
+            GameObject player = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, -4f, 0f), Quaternion.identity, 0);
         }
         else
         {
