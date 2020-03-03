@@ -29,7 +29,15 @@ public class ChatPanel : MonoBehaviour, IChatClientListener
     // Start is called before the first frame update
     void Start()
     {
-        
+        connect();
+    }
+
+    void OnEnable()
+    {
+        if (!isConnected)
+        {
+            connect();
+        }
     }
 
     // Update is called once per frame
