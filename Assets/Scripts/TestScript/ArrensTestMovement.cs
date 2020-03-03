@@ -20,6 +20,10 @@ public class ArrensTestMovement : MonoBehaviourPun
     Rigidbody rb = null;
     #endregion
 
+    #region External References
+    GameObject chatPanel = null;
+    #endregion
+
     float leftVal, rightVal, upVal, downVal = 0.0f;
 
     public float speed = 3.0f;
@@ -28,10 +32,16 @@ public class ArrensTestMovement : MonoBehaviourPun
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        if (photonView.IsMine)
+        {
+            chatPanel = GameObject.Find("Chat Panel");
+            chatPanel.SetActive(false);
+        }
+
     }
     private void Update()
     {
-        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+        if ((photonView.IsMine == false && PhotonNetwork.IsConnected == true) || chatPanel.activeSelf)
         {
             return;
         }
@@ -48,6 +58,11 @@ public class ArrensTestMovement : MonoBehaviourPun
 
     private void FixedUpdate()
     {
+        if ((photonView.IsMine == false && PhotonNetwork.IsConnected == true) || chatPanel.activeSelf)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
         leftVal = leftHeld ? 1.0f : 0.0f;
         rightVal = rightHeld ? 1.0f : 0.0f;
         upVal = upHeld ? 1.0f : 0.0f;
