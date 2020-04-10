@@ -44,4 +44,9 @@ public class PlayerList : MonoBehaviour
 
         playerListText.text = playerList;
     }
+
+    private void OnEnable()
+    {
+        refreshPlayers();
+    }
 }

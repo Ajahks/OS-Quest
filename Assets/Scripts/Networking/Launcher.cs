@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 //Will handle launching the user into game
@@ -12,7 +13,8 @@ public class Launcher : MonoBehaviour
     string gameVersion = "1"; // The version of the game
 
     // Object References
-    [SerializeField] GameObject connectButton = null;
+    [SerializeField] GameObject connectPanel = null;
+    [SerializeField] TextMeshProUGUI usernameText = null;
     [SerializeField] GameObject connectText = null;
 
 
@@ -44,15 +46,16 @@ public class Launcher : MonoBehaviour
     /// </summary>
     public void Connect()
     {
-        if (connectButton)
+        if (connectPanel)
         {
 
-            connectButton.SetActive(false);
+            connectPanel.SetActive(false);
             connectText.SetActive(true);
         }
 
         if (PhotonNetwork.IsConnected)
         {
+            changeNickName();
             // If already connected then we join a random room
             PhotonNetwork.JoinRandomRoom();
         }
@@ -62,5 +65,16 @@ public class Launcher : MonoBehaviour
             isConnecting = PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.GameVersion = gameVersion;
         }
+    }
+
+    // Change the nicknames
+    public void changeNickName()
+    {
+        PhotonNetwork.NickName = usernameText.text;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviourPun
@@ -19,6 +20,11 @@ public class PlayerManager : MonoBehaviourPun
         // #Critical
         // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Start()
+    {
+        transform.Find("Username").GetComponent<TextMeshPro>().text = photonView.Owner.NickName;
     }
 
     // Update is called once per frame

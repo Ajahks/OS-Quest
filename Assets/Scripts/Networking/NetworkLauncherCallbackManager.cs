@@ -26,6 +26,8 @@ public class NetworkLauncherCallbackManager : MonoBehaviourPunCallbacks
         Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
         if (launcher.isConnecting)
         {
+            //Set the nickname
+            launcher.changeNickName();
             PhotonNetwork.JoinRandomRoom();
         }
     }
@@ -48,6 +50,9 @@ public class NetworkLauncherCallbackManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Player has succesfully joined the room!");
 
+
+        //Set the nickname
+        launcher.changeNickName();
         // Now join the actuall game
         PhotonNetwork.LoadLevel(1);
     }
