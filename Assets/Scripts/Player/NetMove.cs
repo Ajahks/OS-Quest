@@ -23,10 +23,18 @@ public class NetMove : MonoBehaviourPun
     Rigidbody rb = null;
     #endregion
 
+    #region external references
+    [SerializeField] GameObject trash;
+    #endregion
+
     float leftVal, rightVal, upVal, downVal = 0.0f;
 
     public float speed = 3.0f;
     public Animator animator;
+
+    #region Helper Variables
+    private bool trashThrow = false;
+    #endregion
 
     #region Unity Callbacks
     private void Awake()
@@ -47,6 +55,12 @@ public class NetMove : MonoBehaviourPun
         if (Input.GetKeyDown(KeyCode.LeftShift) && dashCD <= 0)
         {
             dashTime = .5f;
+        }
+
+        // Trash toss ( will be moved to the other script shortly
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            trashThrow = true;
         }
     }
 
@@ -85,6 +99,14 @@ public class NetMove : MonoBehaviourPun
         if (animator)
         {
             animator.SetFloat("speed", rb.velocity.magnitude);
+        }
+
+        if (trashThrow)
+        {
+            GameObject trashSpawned = Instantiate(trash, transform.position + transform.forward * 2f + Vector3.up*1.5f, Quaternion.identity);
+            trashSpawned.GetComponent<Rigidbody>().velocity = (transform.forward * 40.0f);
+            trashSpawned.GetComponent<Rigidbody>().AddRelativeTorque(new Vector3(0, 0, 100.0f));
+            trashThrow = false;
         }
     }
     #endregion
