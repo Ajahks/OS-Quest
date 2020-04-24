@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 /// <summary>
 /// The super class of any score-based minigame.
 /// </summary>
 public class Minigame : MonoBehaviour
 {
-    public int overworldBuildIndex = 0;
+    public int overworldBuildIndex = 1;
     public Transform player;
 
     public Text textScore;
@@ -55,6 +56,6 @@ public class Minigame : MonoBehaviour
     /// </summary>
     public void LoseGame()
     {
-        SceneManager.LoadScene(overworldBuildIndex);
+        PhotonNetwork.LoadLevel(overworldBuildIndex);
     }
 }

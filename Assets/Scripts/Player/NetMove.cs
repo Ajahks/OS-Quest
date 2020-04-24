@@ -5,6 +5,7 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NetMove : MonoBehaviourPun
 {
@@ -31,6 +32,8 @@ public class NetMove : MonoBehaviourPun
     [SerializeField] GameObject trash;
     #endregion
 
+    bool isInMinigame = false;
+
     float leftVal, rightVal, upVal, downVal = 0.0f;
 
     public float speed = 3.0f;
@@ -44,6 +47,7 @@ public class NetMove : MonoBehaviourPun
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+       
     }
     private void Update()
     {
@@ -113,6 +117,24 @@ public class NetMove : MonoBehaviourPun
             trashSpawned.GetComponent<Rigidbody>().velocity = ((trashSpawned.transform.forward + (trashSpawned.transform.right * Random.Range(-throwSpread,throwSpread))).normalized * 40.0f);
             trashSpawned.GetComponent<Rigidbody>().AddRelativeTorque(new Vector3(0, 0, 100.0f));
             trashThrow = false;
+        }
+
+        // This section down here is dependent to be only for the main player's racoon
+        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+        {
+            return;
+        }
+
+        // CHECK FOR BOUNDS CHECKING FOR MINIGAMES, THERE WILL BE A BETTER WAY THAN THIS FOR NOW
+        if (!isInMinigame && transform.position.x < -27 )
+        {
+            isInMinigame = true;
+            
+            // Go to the minigame
+            PhotonNetwork.LoadLevel(2);
+
+            //Delete the player
+            PhotonNetwork.Destroy(gameObject);
         }
     }
     #endregion
