@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 846b17f0acbca314db6e43cc82f9da7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overworldBuildIndex: 0
+  overworldBuildIndex: 1
   player: {fileID: 7517799602608483295}
   textScore: {fileID: 334214249}
   textLives: {fileID: 1597984663}

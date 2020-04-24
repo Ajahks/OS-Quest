@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 606f453339fde894e91328bd8e643969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwSpread: 0.1
   trash: {fileID: 7048100357892564233, guid: 91b8c81a5f2cf02428d5595c418105da, type: 3}
   speed: 8
   animator: {fileID: 8869206029855477166}

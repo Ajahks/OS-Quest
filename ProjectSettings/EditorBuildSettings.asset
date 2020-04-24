@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Overworld1.unity
     guid: 7c524f8d8df81834f810bd683b2555d4
   - enabled: 1
+    path: Assets/Scenes/ml_catchGame.unity
+    guid: f86291a768398a347be743472d4f804c
+  - enabled: 0
     path: Assets/Scenes/ArrenTestScene.unity
     guid: 2f18a878dbe0a2a49988b12d0f89c497
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

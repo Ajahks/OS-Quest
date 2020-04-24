@@ -5,9 +5,14 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NetMove : MonoBehaviourPun
 {
+    #region Tweakables
+    [Tooltip("1.0 is 180 degrees; 0, is 0 degrees cone in front of you")]
+    public float throwSpread = 1.0f;
+    #endregion
     #region inputVars
 
     bool rightHeld = false;
@@ -27,6 +32,8 @@ public class NetMove : MonoBehaviourPun
     [SerializeField] GameObject trash;
     #endregion
 
+    bool isInMinigame = false;
+
     float leftVal, rightVal, upVal, downVal = 0.0f;
 
     public float speed = 3.0f;
@@ -40,6 +47,7 @@ public class NetMove : MonoBehaviourPun
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+       
     }
     private void Update()
     {
@@ -104,9 +112,29 @@ public class NetMove : MonoBehaviourPun
         if (trashThrow)
         {
             GameObject trashSpawned = Instantiate(trash, transform.position + transform.forward * 2f + Vector3.up*1.5f, Quaternion.identity);
-            trashSpawned.GetComponent<Rigidbody>().velocity = (transform.forward * 40.0f);
+
+            trashSpawned.transform.rotation = transform.rotation;
+            trashSpawned.GetComponent<Rigidbody>().velocity = ((trashSpawned.transform.forward + (trashSpawned.transform.right * Random.Range(-throwSpread,throwSpread))).normalized * 40.0f);
             trashSpawned.GetComponent<Rigidbody>().AddRelativeTorque(new Vector3(0, 0, 100.0f));
             trashThrow = false;
+        }
+
+        // This section down here is dependent to be only for the main player's racoon
+        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+        {
+            return;
+        }
+
+        // CHECK FOR BOUNDS CHECKING FOR MINIGAMES, THERE WILL BE A BETTER WAY THAN THIS FOR NOW
+        if (!isInMinigame && transform.position.x < -27 )
+        {
+            isInMinigame = true;
+            
+            // Go to the minigame
+            PhotonNetwork.LoadLevel(2);
+
+            //Delete the player
+            PhotonNetwork.Destroy(gameObject);
         }
     }
     #endregion
