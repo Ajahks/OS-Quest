@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 1c2aa1cac9b15f24e829c66269b04d6c, type: 3}
+  - {fileID: 2100000, guid: 04ba365f8904a5548b1062ae31f5b22b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -136,7 +136,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 1c2aa1cac9b15f24e829c66269b04d6c, type: 3}
+  - {fileID: 2100000, guid: 04ba365f8904a5548b1062ae31f5b22b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -181,6 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6310871520774952730}
   - component: {fileID: 93365329037197803}
+  - component: {fileID: 618255587281084356}
   m_Layer: 0
   m_Name: trash1
   m_TagString: Untagged
@@ -220,3 +221,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &618255587281084356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7048100357892564233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7e9833f8bda454cb3a2762a0ff8027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  despawnTime: 3

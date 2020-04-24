@@ -8,6 +8,10 @@ using UnityEngine;
 
 public class NetMove : MonoBehaviourPun
 {
+    #region Tweakables
+    [Tooltip("1.0 is 180 degrees; 0, is 0 degrees cone in front of you")]
+    public float throwSpread = 1.0f;
+    #endregion
     #region inputVars
 
     bool rightHeld = false;
@@ -104,7 +108,9 @@ public class NetMove : MonoBehaviourPun
         if (trashThrow)
         {
             GameObject trashSpawned = Instantiate(trash, transform.position + transform.forward * 2f + Vector3.up*1.5f, Quaternion.identity);
-            trashSpawned.GetComponent<Rigidbody>().velocity = (transform.forward * 40.0f);
+
+            trashSpawned.transform.rotation = transform.rotation;
+            trashSpawned.GetComponent<Rigidbody>().velocity = ((trashSpawned.transform.forward + (trashSpawned.transform.right * Random.Range(-throwSpread,throwSpread))).normalized * 40.0f);
             trashSpawned.GetComponent<Rigidbody>().AddRelativeTorque(new Vector3(0, 0, 100.0f));
             trashThrow = false;
         }
