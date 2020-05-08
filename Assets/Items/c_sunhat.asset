@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Sun Hat
   image: {fileID: 2800000, guid: 39a26683ad01c2e42bf7bf0d6cc66e4d, type: 3}
+  prefab: {fileID: 5845928323327706286, guid: 41494c579982c0a4f90d4a66043e00fb, type: 3}
   cosmeticType: 0

@@ -14,6 +14,7 @@ public abstract class Item : ScriptableObject
 {
     public string itemName = "Item";
     public Texture image;
+    public GameObject prefab;
 
     public bool UpdateData(Transform target)
     {
