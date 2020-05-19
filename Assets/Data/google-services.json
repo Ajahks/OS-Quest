@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "861210406247",
+    "firebase_url": "https://osquest-d23f6.firebaseio.com",
+    "project_id": "osquest-d23f6",
+    "storage_bucket": "osquest-d23f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:861210406247:android:82a944d705706d944f93c2",
+        "android_client_info": {
+          "package_name": "com.OSUCSD.OSQuest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "861210406247-kq9lkgi1p37nphfhbc808vpoejmbq5u4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMp3tJyITFCmL9mEJI-mX4wZ22MsRu_J8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "861210406247-kq9lkgi1p37nphfhbc808vpoejmbq5u4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "861210406247-egfrn9cfnimr3b5v64g8j6bbqnqbg1ig.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.OSUCSD.OSQuest"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
